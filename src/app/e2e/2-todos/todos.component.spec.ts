@@ -46,6 +46,7 @@ describe('TodosComponent', () => {
     const service = TestBed.get(TodoService);
     spyOn(service, 'getTodos').and.returnValue(Observable.from([[1, 2, 3]]));
 
+    // Fixture changes must be called after the spy in order to let the spy hijack proceeding code
     fixture.detectChanges();
 
     expect(component.todos.length).toBe(3);
