@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {DebugElement} from '@angular/core';
 
@@ -42,13 +42,20 @@ describe('TodosComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should load todos from the server', () => {
+  it('should load todos from the server', fakeAsync(() => {
     const service = TestBed.get(TodoService);
-    spyOn(service, 'getTodos').and.returnValue(Observable.from([[1, 2, 3]]));
+    spyOn(service, 'getTodosPromise').and.returnValue(Promise.resolve([1, 2, 3]));
 
     // Fixture changes must be called after the spy in order to let the spy hijack proceeding code
     fixture.detectChanges();
 
+    tick(50);
+
     expect(component.todos.length).toBe(3);
-  });
+
+    // If using async instead of fakeAsync
+    // fixture.whenStable().then(() => {
+    //   expect(component.todos.length).toBe(3);
+    // });
+  }));
 });

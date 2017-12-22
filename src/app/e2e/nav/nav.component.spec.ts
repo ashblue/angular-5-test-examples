@@ -33,7 +33,6 @@ describe('NavComponent', () => {
     fixture.detectChanges();
 
     const des = fixture.debugElement.queryAll(By.directive(RouterLinkWithHref));
-    console.log(des.length);
     const result = des.find(de => {
       return de.properties['href'] === '/todos';
     });
