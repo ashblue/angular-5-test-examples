@@ -12,6 +12,7 @@ import {UsersComponent} from './e2e/users/users.component';
 import {TodoService} from './e2e/2-todos/todo.service';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
+import { NavComponent } from './e2e/nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {RouterModule} from '@angular/router';
     VoterComponent,
     GreeterComponent,
     UserDetailsComponent,
-    TodosComponent
+    TodosComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
