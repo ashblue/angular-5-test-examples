@@ -1,5 +1,14 @@
-import {Observable} from 'rxjs/Observable';
+import {Subject} from 'rxjs/Subject';
 
 export class ActivatedRouteStub {
-  params: Observable<any> = Observable.empty();
+  private subject = new Subject();
+
+  get params() {
+    return this.subject.asObservable();
+  }
+
+  push(value) {
+    this.subject.next(value);
+  }
+
 }

@@ -1,7 +1,4 @@
-/* tslint:disable:no-unused-variable */
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {DebugElement} from '@angular/core';
 
 import {UserDetailsComponent} from './user-details.component';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -46,5 +43,15 @@ describe('UserDetailsComponent', () => {
     component.save();
 
     expect(spy).toHaveBeenCalledWith(['users']);
+  });
+
+  it('should navigate the user to the not found page when an invalid user id is passed', () => {
+    const router = TestBed.get(Router);
+    const spy = spyOn(router, 'navigate');
+
+    const route: ActivatedRouteStub = TestBed.get(ActivatedRoute);
+    route.push({id: 0});
+
+    expect(spy).toHaveBeenCalledWith(['not-found']);
   });
 });
